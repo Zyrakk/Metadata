@@ -1,87 +1,120 @@
+/* Reset de márgenes y estilo base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Fondo futurista */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at center, #0f0f0f, #1a1a1a 60%, #000);
+    color: #fff;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
+/* Efecto de brillo suave en el contenedor */
 .container {
     max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #0dfbff;
+    position: relative;
+    z-index: 1;
 }
 
+/* Título con efecto de luces de neón */
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 36px;
+    color: #0dfbff;
+    text-shadow: 0 0 10px #0dfbff, 0 0 20px #0dfbff;
 }
 
+/* Estilo del formulario */
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 label {
     margin-bottom: 10px;
+    font-size: 18px;
+    color: #0dfbff;
 }
 
+/* Estilo para el input de archivo */
 input[type="file"] {
-    margin-bottom: 20px;
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 2px solid #0dfbff;
+    background-color: #0f0f0f;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
 }
 
+input[type="file"]:hover {
+    border-color: #00ffff;
+}
+
+/* Botones de acción con efecto neón */
 button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: #fff;
+    padding: 12px 20px;
+    background-color: #0dfbff;
+    color: #000;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 0px 15px #0dfbff;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #00ffff;
+    box-shadow: 0px 0px 30px #00ffff;
 }
 
+/* Sección de metadatos */
+#metadataSection {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(13, 251, 255, 0.5);
+}
+
+h2 {
+    color: #0dfbff;
+    text-shadow: 0 0 10px #0dfbff, 0 0 20px #0dfbff;
+}
+
+/* Caja para mostrar los metadatos */
 #metadataDisplay {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 4px;
+    background-color: #1c1c1c;
+    padding: 15px;
+    border-radius: 10px;
     margin-bottom: 20px;
     white-space: pre-wrap;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0px 0px 15px rgba(0, 223, 255, 0.5);
 }
 
-.success {
-    text-align: center;
-    background-color: #d4edda;
-    padding: 15px;
-    border: 1px solid #c3e6cb;
-    border-radius: 4px;
-    margin-top: 20px;
-}
-
-.success a {
-    color: #155724;
-    text-decoration: none;
-}
-
-.success a:hover {
-    text-decoration: underline;
-}
-
+/* Tabla para visualización de datos si es necesario */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -90,15 +123,50 @@ table {
 
 th, td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #0dfbff;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: rgba(0, 223, 255, 0.1);
     font-weight: bold;
 }
 
 td {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Efecto hover en filas de la tabla */
+tr:hover {
+    background-color: rgba(0, 223, 255, 0.2);
+}
+
+/* Hover interactivo para el contenedor */
+.container:hover {
+    box-shadow: 0px 20px 50px rgba(13, 251, 255, 0.5);
+}
+
+/* Ocultar el input file */
+input[type="file"] {
+    display: none;
+}
+
+/* Estilo del label para que actúe como botón */
+.upload-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #0dfbff;
+    color: #000;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 0px 15px #0dfbff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upload-label:hover {
+    background-color: #00ffff;
+    box-shadow: 0px 0px 30px #00ffff;
 }
