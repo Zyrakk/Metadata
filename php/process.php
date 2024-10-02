@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "</table>";
             echo "</div>";
 
-            echo "<form action='procesar.php' method='POST'>";
+            echo "<form action='php/process.php' method='POST'>";
             echo "<input type='hidden' name='delete' value='1'>";
             echo "<input type='hidden' name='filePath' value='" . htmlspecialchars($uploadFile, ENT_QUOTES, 'UTF-8') . "'>";
             echo "<button type='submit'>Eliminar Metadatos</button>";
