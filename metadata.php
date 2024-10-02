@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>Eliminador de Metadatos de Imágenes</h1>
-        <form action="php/procesar.php" method="POST" enctype="multipart/form-data" id="uploadForm">
+        <form action="php/process.php" method="POST" enctype="multipart/form-data" id="uploadForm">
             <label for="file" class="upload-label">Sube una imagen (JPEG, PNG o GIF, máximo 5MB):</label>
             <!-- Input file oculto -->
             <input type="file" name="file" id="file" required>
