@@ -1,7 +1,7 @@
 <?php
 // Configuración y validaciones iniciales
-$uploadDir = 'uploads/';
-$cleanedDir = 'cleaned_files/';
+$uploadDir = '../uploads/';
+$cleanedDir = '../cleaned_files/';
 $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 $maxFileSize = 5 * 1024 * 1024;
 
