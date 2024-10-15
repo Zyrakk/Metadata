@@ -74,6 +74,10 @@ input[type="file"] {
     text-align: center;
 }
 
+.upload-label:hover {
+    background-color: #126782;
+}
+
 /* Label en modo oscuro */
 body.dark .upload-label {
     background-color: #3700B3;
