@@ -108,20 +108,40 @@ h2 {
 }
 
 /* Modo oscuro */
+
 body.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+button, .card {
     background-color: #1e1e1e;
-    color: #f5f5f5;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
-body.dark .container {
-    background-color: #2a2a2a;
+button:hover, .card:hover {
+    background-color: #292929;
+    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
 }
 
-body.dark button {
-    background-color: #3a3a3a;
+a, h1, h2, h3, p {
+    color: #b3b3b3;
 }
 
-body.dark #metadataDisplay {
-    background-color: #3a3a3a;
-    color: #f5f5f5;
+a.active, .active {
+    color: #a366ff;
+}
+
+nav {
+    background-color: #1b1b1b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#switch {
+    color: #a366ff;
+    cursor: pointer;
 }
