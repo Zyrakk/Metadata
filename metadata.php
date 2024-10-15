@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Eliminador de Metadatos</h1>
         <br><br>
-        <form action="procesar.php" method="POST" enctype="multipart/form-data" id="uploadForm">
+        <form action="php/process.php" method="POST" enctype="multipart/form-data" id="uploadForm">
             <label for="file" class="upload-label">Seleccionar Imagen</label>
             <input type="file" name="file" id="file" required>
             <button type="submit" id="submitBtn">Mostrar Metadatos</button>
