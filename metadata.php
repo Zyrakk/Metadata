@@ -10,7 +10,8 @@
 </head>
 <body class="dark">
     <div class="container">
-        <h1>Eliminador de Metadatos de Imágenes</h1>
+        <h1>Eliminador de Metadatos</h1>
+        <br><br>
         <form action="procesar.php" method="POST" enctype="multipart/form-data" id="uploadForm">
             <label for="file" class="upload-label">Seleccionar Imagen</label>
             <input type="file" name="file" id="file" required>

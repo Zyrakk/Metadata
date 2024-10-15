@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Fondo degradado suave */
+/* Fondo en modo claro */
 body {
     background: linear-gradient(135deg, #f3f4f6, #e0e5ec);
     color: #333;
@@ -17,24 +17,39 @@ body {
     padding: 20px;
 }
 
-/* Contenedor principal con borde y sombra sutil */
+/* Fondo en modo oscuro */
+body.dark {
+    background: linear-gradient(135deg, #121212, #1F1F1F);
+    color: #F5F5F5;
+}
+
+/* Contenedor principal */
 .container {
     max-width: 600px;
     background-color: #ffffff;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
-/* Título elegante */
-h1 {
+/* Contenedor en modo oscuro */
+body.dark .container {
+    background-color: #1E1E1E;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos */
+h1, h2 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
     color: #2b2d42;
 }
 
-/* Formulario centrado */
+/* Títulos en modo oscuro */
+body.dark h1, body.dark h2 {
+    color: #BB86FC;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -42,12 +57,11 @@ form {
     gap: 15px;
 }
 
-/* Estilo del input de archivo oculto */
 input[type="file"] {
     display: none;
 }
 
-/* Estilo del label para actuar como botón */
+/* Label como botón */
 .upload-label {
     display: inline-block;
     padding: 12px 24px;
@@ -60,12 +74,16 @@ input[type="file"] {
     text-align: center;
 }
 
-.upload-label:hover {
-    background-color: #219ebc;
-    transform: scale(1.05);
+/* Label en modo oscuro */
+body.dark .upload-label {
+    background-color: #3700B3;
 }
 
-/* Botón para mostrar y eliminar metadatos */
+body.dark .upload-label:hover {
+    background-color: #BB86FC;
+}
+
+/* Botones */
 button {
     padding: 12px 24px;
     background-color: #219ebc;
@@ -79,7 +97,15 @@ button {
 
 button:hover {
     background-color: #126782;
-    transform: scale(1.05);
+}
+
+body.dark button {
+    background-color: #3700B3;
+    color: #fff;
+}
+
+body.dark button:hover {
+    background-color: #00A896;
 }
 
 /* Sección de metadatos */
@@ -89,15 +115,15 @@ button:hover {
     background-color: #f9f9f9;
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
 }
 
-/* Título de la sección de metadatos */
-h2 {
-    color: #2b2d42;
-    margin-bottom: 10px;
+body.dark #metadataSection {
+    background-color: #1F1F1F;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Caja donde se muestran los metadatos */
+/* Caja de metadatos */
 #metadataDisplay {
     background-color: #f1f1f1;
     padding: 15px;
@@ -107,53 +133,6 @@ h2 {
     color: #444;
 }
 
-/* Modo oscuro */
-
-/* Modo oscuro para la página */
-body.dark {
-    background-color: #121212;
-    color: #F5F5F5;
-}
-
-/* Contenedor principal en modo oscuro */
-body.dark .container {
-    background-color: #1F1F1F;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-/* Título en modo oscuro */
-body.dark h1,
-body.dark h2 {
-    color: #BB86FC;
-}
-
-/* Estilo del label (actúa como botón) en modo oscuro */
-body.dark .upload-label {
-    background-color: #3700B3;
-    color: #F5F5F5;
-}
-
-body.dark .upload-label:hover {
-    background-color: #BB86FC;
-}
-
-/* Botón para mostrar y eliminar metadatos en modo oscuro */
-body.dark button {
-    background-color: #03DAC6;
-    color: #121212;
-}
-
-body.dark button:hover {
-    background-color: #00A896;
-}
-
-/* Sección de metadatos en modo oscuro */
-body.dark #metadataSection {
-    background-color: #1F1F1F;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Caja de metadatos en modo oscuro */
 body.dark #metadataDisplay {
     background-color: #292929;
     color: #F5F5F5;
