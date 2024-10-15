@@ -21,7 +21,7 @@
         <div id="metadataSection" style="display:none;">
             <h2>Metadatos del Archivo:</h2>
             <pre id="metadataDisplay"></pre>
-            <form action="process.php" method="POST" id="deleteMetadataForm">
+            <form action="php/process.php" method="POST" id="deleteMetadataForm">
                 <input type="hidden" name="delete" value="1">
                 <input type="hidden" name="filePath" id="filePath" value="">
                 <button type="submit">Eliminar Metadatos</button>
