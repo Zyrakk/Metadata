@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="sources/styles_metadata.css">
     <script defer src="sources/detect_darkmode.js"></script>
 </head>
-<body>
+<body class="dark">
     <div class="container">
         <h1>Eliminador de Metadatos de Imágenes</h1>
         <form action="procesar.php" method="POST" enctype="multipart/form-data" id="uploadForm">

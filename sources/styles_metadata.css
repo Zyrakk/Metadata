@@ -109,39 +109,52 @@ h2 {
 
 /* Modo oscuro */
 
+/* Modo oscuro para la página */
 body.dark {
     background-color: #121212;
-    color: #e0e0e0;
+    color: #F5F5F5;
 }
 
-button, .card {
-    background-color: #1e1e1e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+/* Contenedor principal en modo oscuro */
+body.dark .container {
+    background-color: #1F1F1F;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
 }
 
-button:hover, .card:hover {
+/* Título en modo oscuro */
+body.dark h1,
+body.dark h2 {
+    color: #BB86FC;
+}
+
+/* Estilo del label (actúa como botón) en modo oscuro */
+body.dark .upload-label {
+    background-color: #3700B3;
+    color: #F5F5F5;
+}
+
+body.dark .upload-label:hover {
+    background-color: #BB86FC;
+}
+
+/* Botón para mostrar y eliminar metadatos en modo oscuro */
+body.dark button {
+    background-color: #03DAC6;
+    color: #121212;
+}
+
+body.dark button:hover {
+    background-color: #00A896;
+}
+
+/* Sección de metadatos en modo oscuro */
+body.dark #metadataSection {
+    background-color: #1F1F1F;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Caja de metadatos en modo oscuro */
+body.dark #metadataDisplay {
     background-color: #292929;
-    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
-}
-
-a, h1, h2, h3, p {
-    color: #b3b3b3;
-}
-
-a.active, .active {
-    color: #a366ff;
-}
-
-nav {
-    background-color: #1b1b1b;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#switch {
-    color: #a366ff;
-    cursor: pointer;
+    color: #F5F5F5;
 }
