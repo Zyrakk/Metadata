@@ -1,12 +1,11 @@
 <?php
-// Configuración y validaciones iniciales
+// Configurar el directorio de subida y tipos de archivo permitidos
 $uploadDir = '../uploads/';
-$cleanedDir = '../cleaned_files/';
-$allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-$maxFileSize = 5 * 1024 * 1024;
+$allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']; // Solo imágenes
+$maxFileSize = 5 * 1024 * 1024; // 5MB máximo
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Manejo de subida de archivo y obtención de metadatos
+    // Verificar si estamos eliminando metadatos
     if (!isset($_POST['delete'])) {
         if (!isset($_FILES['file']) || $_FILES['file']['error'] != UPLOAD_ERR_OK) {
             die("Error en la subida del archivo.");
@@ -14,75 +13,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $file = $_FILES['file'];
 
-        if ($file['size'] > $maxFileSize) {
-            die("El archivo excede el tamaño máximo permitido de 5MB.");
-        }
-
+        // Verificar tamaño y tipo del archivo
+        if ($file['size'] > $maxFileSize) die("El archivo es demasiado grande.");
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mimeType = finfo_file($finfo, $file['tmp_name']);
         finfo_close($finfo);
 
-        if (!in_array($mimeType, $allowedMimeTypes)) {
-            die("El tipo de archivo no está permitido. Solo se permiten archivos JPEG, PNG y GIF.");
-        }
+        if (!in_array($mimeType, $allowedMimeTypes)) die("Tipo de archivo no permitido.");
 
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        if (!in_array($fileExtension, $allowedExtensions)) {
-            die("La extensión del archivo no está permitida.");
+        if (!in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif'])) {
+            die("Extensión no permitida.");
         }
 
+        // Generar un nombre seguro y único
         $fileName = bin2hex(random_bytes(16)) . '.' . $fileExtension;
         $uploadFile = $uploadDir . $fileName;
 
+        // Mover el archivo al directorio de subida
         if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
-            die("Error al mover el archivo subido.");
+            die("Error al mover el archivo.");
         }
 
-        // Procesar y mostrar metadatos
+        // Obtener metadatos usando ExifTool
         $cmd = "exiftool -json " . escapeshellarg($uploadFile);
         exec($cmd, $output, $result);
         $metadata = json_decode(implode("", $output), true);
 
         if ($result === 0 && !empty($metadata)) {
-            $metadata = $metadata[0];
-            echo "<div class='metadata'>";
-            echo "<h2>Metadatos del archivo:</h2>";
-            echo "<table>";
+            $metadata = $metadata[0]; // Usamos el primer elemento del JSON
+            echo "<h2>Metadatos del archivo:</h2><table>";
             foreach ($metadata as $key => $value) {
-                echo "<tr><th>" . htmlspecialchars($key, ENT_QUOTES, 'UTF-8') . "</th><td>" . htmlspecialchars(is_array($value) ? implode(", ", $value) : $value, ENT_QUOTES, 'UTF-8') . "</td></tr>";
+                echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars(is_array($value) ? implode(", ", $value) : $value) . "</td></tr>";
             }
             echo "</table>";
-            echo "</div>";
 
-            echo "<form action='process.php' method='POST'>";
-            echo "<input type='hidden' name='delete' value='1'>";
-            echo "<input type='hidden' name='filePath' value='" . htmlspecialchars($uploadFile, ENT_QUOTES, 'UTF-8') . "'>";
-            echo "<button type='submit'>Eliminar Metadatos</button>";
-            echo "</form>";
+            echo "<form action='procesar.php' method='POST'>
+                    <input type='hidden' name='delete' value='1'>
+                    <input type='hidden' name='filePath' value='" . htmlspecialchars($uploadFile, ENT_QUOTES, 'UTF-8') . "'>
+                    <button type='submit'>Eliminar Metadatos</button>
+                  </form>";
         } else {
             die("Error al obtener metadatos.");
         }
     } else {
-        // Eliminación de metadatos
-        if (!isset($_POST['filePath'])) {
-            die("Archivo no encontrado.");
-        }
-
+        if (!isset($_POST['filePath'])) die("Archivo no encontrado.");
         $uploadFile = $_POST['filePath'];
-        $fileExtension = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
-        $fileName = basename($uploadFile);
-        $cleanedFile = $cleanedDir . $fileName;
 
-        $cmd = "exiftool -all= -o " . escapeshellarg($cleanedFile) . " " . escapeshellarg($uploadFile);
+        // Eliminar metadatos incluyendo *Maker Notes* (opción avanzada)
+        $cmd = "exiftool -all= -overwrite_original " . escapeshellarg($uploadFile);
         exec($cmd, $output, $result);
 
         if ($result === 0) {
-            unlink($uploadFile);
-
-            echo "<div class='success'>
-                    <p>Metadatos eliminados correctamente. <a href='" . htmlspecialchars($cleanedFile, ENT_QUOTES, 'UTF-8') . "'>Descargar archivo sin metadatos</a></p>
-                </div>";
+            echo "<p>Metadatos eliminados correctamente. <a href='" . htmlspecialchars($uploadFile, ENT_QUOTES, 'UTF-8') . "'>Descargar archivo sin metadatos</a></p>";
         } else {
             die("Error al eliminar metadatos.");
         }
